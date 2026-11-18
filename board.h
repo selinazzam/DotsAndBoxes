@@ -20,4 +20,8 @@ int drawLine(Board *board, int r1, int c1, int r2, int c2);
 
 int claimCompletedBoxes(Board *board, char player);
 
+int isBoardFull(const Board *board);
+
+int getScore(const Board *board, char player);
+
 #endif
