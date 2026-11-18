@@ -26,31 +26,35 @@ void initializeBoard(Board *board) {
 void displayBoard(const Board *board) {
     int i, j;
 
-    printf("\n    ");
+    printf("  ");
 
     for (j = 0; j <= COLS; j++) {
-        printf("%4d", j);
+        printf("%d", j);
+
+        if (j < COLS) {
+            printf(" ");
+        }
     }
 
     printf("\n");
 
     for (i = 0; i <= ROWS; i++) {
-        printf("%3d ", i);
+        printf("%d ", i);
 
         for (j = 0; j < COLS; j++) {
             printf(".");
 
             if (board->horizontal[i][j]) {
-                printf("---");
+                printf("-");
             } else {
-                printf("   ");
+                printf(" ");
             }
         }
 
         printf(".\n");
 
         if (i < ROWS) {
-            printf("    ");
+            printf("  ");
 
             for (j = 0; j < COLS; j++) {
                 if (board->vertical[i][j]) {
@@ -59,7 +63,7 @@ void displayBoard(const Board *board) {
                     printf(" ");
                 }
 
-                printf(" %c ", board->owner[i][j]);
+                printf("%c", board->owner[i][j]);
             }
 
             if (board->vertical[i][COLS]) {
@@ -71,13 +75,13 @@ void displayBoard(const Board *board) {
             printf("\n");
         }
     }
-
-    printf("\n");
 }
 
 int isValidMove(const Board *board, int r1, int c1, int r2, int c2) {
-    if (r1 < 0 || r1 > ROWS || r2 < 0 || r2 > ROWS ||
-        c1 < 0 || c1 > COLS || c2 < 0 || c2 > COLS) {
+    if (r1 < 0 || r1 > ROWS ||
+        r2 < 0 || r2 > ROWS ||
+        c1 < 0 || c1 > COLS ||
+        c2 < 0 || c2 > COLS) {
         return 0;
     }
 
