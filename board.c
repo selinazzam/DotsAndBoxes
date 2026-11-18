@@ -146,3 +146,20 @@ int claimCompletedBoxes(Board *board, char player) {
 
     return count;
 }
+int isBoardFull(const Board *board) {
+    int i, j;
+    for (i = 0; i < ROWS; i++)
+        for (j = 0; j < COLS; j++)
+            if (board->owner[i][j] == ' ')
+                return 0;
+    return 1;
+}
+
+int getScore(const Board *board, char player) {
+    int i, j, count = 0;
+    for (i = 0; i < ROWS; i++)
+        for (j = 0; j < COLS; j++)
+            if (board->owner[i][j] == player)
+                count++;
+    return count;
+}
